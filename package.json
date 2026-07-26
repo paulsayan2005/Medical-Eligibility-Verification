@@ -11,6 +11,7 @@
     "boilerplate/frontend"
   ],
   "scripts": {
+    "dev": "npm run dev -w boilerplate/frontend",
     "postinstall": "node patch-runtime.mjs",
     "compile": "COMPACT_CMD=\"compact compile +0.31.1\"; if command -v compactc >/dev/null 2>&1 && compactc --version >/dev/null 2>&1; then COMPACT_CMD=\"compactc\"; fi; cd boilerplate/contract/src && rm -rf managed/medical-eligibility-verification && mkdir -p managed/medical-eligibility-verification && $COMPACT_CMD medical-eligibility-verification.compact managed/medical-eligibility-verification && sed -i 's/.*checkRuntimeVersion.*//g' managed/medical-eligibility-verification/contract/index.js && echo '✅ Contract compiled' && cd ../../.. && npm run build -w boilerplate/contract",
     "build": "npm run build --workspaces --if-present",
