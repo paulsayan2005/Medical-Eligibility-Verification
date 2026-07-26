@@ -311,6 +311,7 @@ export function queryLedgerState(context, partialProofData, ops) {
 
 export default defineConfig({
   plugins: [
+    // @ts-expect-error - TS2349: This expression is not callable
     wasm(),
     compactRuntimeEsmPlugin(),
     react(),
