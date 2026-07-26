@@ -6,14 +6,10 @@ import { PublicStatePanel } from './components/PublicStatePanel';
 import { pino } from 'pino';
 import { setLogger } from './api';
 
-// Initialize global logger for the frontend
+// Initialize global browser-compatible logger for the frontend
 const logger = pino({
-  level: 'info',
-  transport: {
-    target: 'pino-pretty',
-    options: {
-      colorize: true
-    }
+  browser: {
+    asObject: true
   }
 });
 setLogger(logger);
