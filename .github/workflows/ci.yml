@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js 22.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: 'npm'
+
+    - name: Install Midnight Compact Compiler
+      run: |
+        curl --proto '=https' --tlsv1.2 -LsSf https://github.com/midnightntwrk/compact/releases/latest/download/compact-installer.sh | sh
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        echo "$HOME/.compact/bin" >> $GITHUB_PATH
+        $HOME/.local/bin/compact update 0.31.1
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Compile Contract
+      run: npm run compile
+
+    - name: Lint Workspace
+      run: npm run lint
+
+    - name: Typecheck Workspace
+      run: npm run typecheck
+
+    - name: Test Contract CLI (Vitest)
+      run: npm run test -w boilerplate/contract-cli
+
+    - name: Build Frontend
+      run: npm run build -w boilerplate/frontend

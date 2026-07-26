@@ -1,0 +1,64 @@
+pragma language_version 0.23;
+
+import CompactStandardLibrary;
+
+// ============================================================
+// Medical Eligibility Verification -- Confidential Credentials
+//
+// Privacy Model:
+//   PUBLIC  : verificationCount, eligibleCount, ineligibleCount
+//   PRIVATE : patient age and policy ID hash (ZK witnesses only)
+//
+// Zero-Knowledge guarantee:
+//   The patient proves age >= minAge and holds a valid policy
+//   WITHOUT revealing their actual age or policy ID on-chain.
+//
+// Disclosure policy:
+//   The eligibility result (Boolean) is explicitly disclosed.
+//   eligibleCount and ineligibleCount update reveal the result,
+//   so they are gated on disclose(isEligible). This is intentional:
+//   the caller chose to reveal the outcome when calling the circuit.
+// ============================================================
+
+// --- Public Ledger State (visible to all observers) ---
+export ledger verificationCount: Counter;
+export ledger eligibleCount: Counter;
+export ledger ineligibleCount: Counter;
+
+// --- Private Witnesses (never stored on-chain, proven in ZK) ---
+witness secretPatientAge(): Uint<8>;
+witness secretPolicyIdHash(): Bytes<32>;
+
+// ============================================================
+// verifyEligibility -- Main ZK Circuit
+//
+// Public inputs:  minAge (caller-supplied minimum age threshold)
+// Private inputs: patient age, policy ID hash (via witnesses)
+// Public output:  Boolean eligibility result via disclose()
+// ============================================================
+export circuit verifyEligibility(minAge: Uint<8>): Boolean {
+  // Consume private witnesses -- only the prover knows these values
+  const age: Uint<8> = secretPatientAge();
+  const policyHash: Bytes<32> = secretPolicyIdHash();
+
+  // Eligibility conditions computed inside ZK proof
+  const isOldEnough: Boolean = (age >= minAge);
+  const emptyHash: Bytes<32> = pad(32, "");
+  const hasValidPolicy: Boolean = (policyHash != emptyHash);
+  const isEligible: Boolean = (isOldEnough && hasValidPolicy);
+
+  // Explicitly disclose the result -- this is the intentional public output
+  const publicResult: Boolean = disclose(isEligible);
+
+  // Update total verification count unconditionally
+  verificationCount.increment(1);
+
+  // Branch on the DISCLOSED (public) result -- not the private witness
+  if (publicResult) {
+    eligibleCount.increment(1);
+  } else {
+    ineligibleCount.increment(1);
+  }
+
+  return publicResult;
+}
