@@ -2,11 +2,11 @@ import { useWallet } from '../context/WalletContext';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
-import { Download, Share2, WalletCards, Key } from 'lucide-react';
+import { Download, Share2, WalletCards, Key, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function VaultPage() {
-  const { contractAddress } = useWallet();
+  const { contractAddress, connectorAPI } = useWallet();
 
   // Mock data to demonstrate the UI
   const credentials = [
@@ -27,6 +27,15 @@ export default function VaultPage() {
         <p className="text-muted-foreground">Manage your issued confidential credentials and Zero-Knowledge proofs.</p>
       </div>
 
+      {!connectorAPI && (
+        <div className="rounded-lg border border-blue-500/40 bg-blue-500/10 p-4 flex items-start gap-3 text-sm">
+          <Info className="h-5 w-5 text-blue-500 shrink-0 mt-0.5" />
+          <div>
+            <p className="font-medium text-blue-700 dark:text-blue-400">Connect wallet to activate credentials</p>
+            <p className="text-muted-foreground mt-0.5">Connect your Midnight Lace Wallet and run a verification to activate your credential status.</p>
+          </div>
+        </div>
+      )}
       {credentials.map((cred, i) => (
         <motion.div
           key={cred.id}
