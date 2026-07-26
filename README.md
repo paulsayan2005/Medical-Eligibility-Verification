@@ -1,7 +1,8 @@
 # Medical Eligibility Verification (MEV)
 A privacy-preserving zero-knowledge medical eligibility verification platform built on the Midnight Network using Compact smart contracts.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-blue?style=for-the-badge&logo=vercel)](https://medical-eligibility-verification.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-blue?style=for-the-badge&logo=vercel)](https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/)
+[![Demo Video](https://img.shields.io/badge/Demo%20Video-Watch-red?style=for-the-badge&logo=youtube)](https://youtu.be/ODnpX1oC7k8)
 [![CI/CD Pipeline](https://img.shields.io/github/actions/workflow/status/paulsayan2005/Medical-Eligibility-Verification/ci.yml?style=for-the-badge&label=CI%2FCD&logo=github-actions)](https://github.com/paulsayan2005/Medical-Eligibility-Verification/actions)
 [![Midnight Preprod](https://img.shields.io/badge/Midnight-Preprod-purple?style=for-the-badge)](https://midnight.network/)
 [![Compact Language](https://img.shields.io/badge/Language-Compact-orange?style=for-the-badge)](https://docs.midnight.network/)
@@ -14,7 +15,8 @@ A privacy-preserving zero-knowledge medical eligibility verification platform bu
 
 | Resource | Link |
 |---|---|
-| 🌐 **Live Web Application** | [https://medical-eligibility-verification.vercel.app/](https://medical-eligibility-verification.vercel.app/) |
+| 🌐 **Live Web Application** | [https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/](https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/) |
+| 📺 **Demo Video** | [https://youtu.be/ODnpX1oC7k8](https://youtu.be/ODnpX1oC7k8) |
 | 📦 **GitHub Repository** | [https://github.com/paulsayan2005/Medical-Eligibility-Verification](https://github.com/paulsayan2005/Medical-Eligibility-Verification) |
 | ⚙️ **CI/CD Workflow** | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
 
@@ -23,7 +25,8 @@ A privacy-preserving zero-knowledge medical eligibility verification platform bu
 ## 📋 Challenge Requirements & Passing Checklist
 
 - ✅ **Fully Functional Privacy dApp**: Meaningful use of Midnight's Zero-Knowledge privacy model
-- ✅ **Live Demo Deployment**: [https://medical-eligibility-verification.vercel.app/](https://medical-eligibility-verification.vercel.app/)
+- ✅ **Live Demo Deployment**: [https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/](https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/)
+- ✅ **Demo Video**: [https://youtu.be/ODnpX1oC7k8](https://youtu.be/ODnpX1oC7k8)
 - ✅ **Passing Test Suite**: Vitest unit tests passing (`npm test`)
 - ✅ **CI/CD Pipeline Running**: GitHub Actions workflow running automated build & tests ([`.github/workflows/ci.yml`](.github/workflows/ci.yml))
 - ✅ **Public GitHub Repository**: [https://github.com/paulsayan2005/Medical-Eligibility-Verification](https://github.com/paulsayan2005/Medical-Eligibility-Verification)
