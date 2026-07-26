@@ -88,35 +88,28 @@ public async connectWallet(): Promise<{ connected: boolean; walletAddress: strin
 ### Landing Page — Medical Eligibility, Verified Privately
 ![Landing Page](docs/screenshots/landing.png)
 
-> The hero landing page introduces the concept: prove your medical eligibility without revealing your underlying personal data, using Zero-Knowledge cryptography on the Midnight blockchain.
-
----
-
-### App Dashboard — Midnight Auth Dashboard
-![Dashboard](docs/screenshots/dashboard.png)
-
-> The main app dashboard prompts the user to connect their Midnight Lace Wallet. Once connected, the dashboard displays the active contract state, wallet address, and eligibility verification controls.
+> The hero landing page introduces the concept: prove your medical eligibility without revealing your underlying personal data, using Zero-Knowledge cryptography on the Midnight blockchain. Features three key pillars: Absolute Privacy, Tamper-Proof verification, and Instant Validation.
 
 ---
 
 ### Verification History — ZK Proof Audit Log
 ![Verification History](docs/screenshots/history.png)
 
-> The History page provides a transparent audit log of all Zero-Knowledge verification interactions with the Midnight Network — including wallet connection events and proof submission timestamps.
+> The History page provides a transparent audit log of all Zero-Knowledge verification interactions with the Midnight Network — including wallet connection events and proof submission timestamps. Shows sidebar navigation with Dashboard, Verify Eligibility, Credential Vault, History, Privacy, and Settings.
 
 ---
 
 ### Privacy Architecture — How Midnight Privacy Works
 ![Privacy Page](docs/screenshots/privacy.png)
 
-> The Privacy page explains the underlying cryptographic architecture: Zero-Knowledge Proofs (computed locally in-browser), Confidential State (private data never leaves the device), and the Architecture Flow from Local Device → ZK Proof → Midnight Network.
+> The Privacy page explains the underlying cryptographic architecture: Zero-Knowledge Proofs (computed locally in-browser), Confidential State (private data never leaves the device), and the Architecture Flow from Local Device → ZK Proof → Midnight Network verifier.
 
 ---
 
 ### Settings — Network & Appearance Configuration
 ![Settings Page](docs/screenshots/settings.png)
 
-> The Settings page allows users to configure their preferred UI theme (Light / Dark / System) and displays the current Midnight network connection status (Testnet / Preprod).
+> The Settings page allows users to configure their preferred UI theme (Light / Dark / System) and displays the current Midnight network connection status — showing Midnight Testnet as Default Network with Connected status.
 
 ---
 
