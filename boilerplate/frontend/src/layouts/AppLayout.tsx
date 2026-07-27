@@ -1,8 +1,6 @@
 import { Outlet, Link, useLocation } from "react-router-dom"
-import { useWallet } from "../context/WalletContext"
 import { useTheme } from "../context/ThemeContext"
 import { Button } from "../components/ui/Button"
-import { Badge } from "../components/ui/Badge"
 import { 
   LayoutDashboard, 
   ShieldCheck, 
@@ -12,12 +10,11 @@ import {
   Info,
   Sun,
   Moon,
-  LogOut,
   Menu,
   Bell
 } from "lucide-react"
 import { useState } from "react"
-import { WalletPanel } from "../components/WalletPanel" // We'll rewrite this soon to just be a button/modal
+import { WalletPanel } from "../components/WalletPanel"
 
 const navigation = [
   { name: 'Dashboard', href: '/app', icon: LayoutDashboard },
@@ -30,15 +27,8 @@ const navigation = [
 
 export function AppLayout() {
   const { theme, setTheme } = useTheme()
-  const { connectorAPI, setConnectorAPI, setWalletAPI, setContractAddress } = useWallet()
   const location = useLocation()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  const handleDisconnect = () => {
-    setConnectorAPI(null)
-    setWalletAPI(null)
-    setContractAddress('')
-  }
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -87,31 +77,14 @@ export function AppLayout() {
             </div>
           </div>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
               {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
             <Button variant="ghost" size="icon">
               <Bell className="h-5 w-5" />
             </Button>
-            
-            {connectorAPI ? (
-              <div className="flex items-center gap-3">
-                <Badge variant="success" className="hidden sm:inline-flex">Connected</Badge>
-                <Button variant="outline" size="sm" onClick={handleDisconnect} className="gap-2">
-                  <LogOut className="h-4 w-4" />
-                  <span className="hidden sm:inline">Disconnect</span>
-                </Button>
-              </div>
-            ) : (
-              <WalletPanel 
-                onConnect={(api, wApi) => {
-                  setConnectorAPI(api);
-                  setWalletAPI(wApi);
-                }} 
-                onDisconnect={handleDisconnect}
-              />
-            )}
+            <WalletPanel />
           </div>
         </header>
         

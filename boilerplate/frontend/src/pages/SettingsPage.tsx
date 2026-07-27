@@ -6,7 +6,7 @@ import { Sun, Moon, Laptop, Network } from 'lucide-react';
 
 export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
-  const { connectorAPI, setConnectorAPI, setWalletAPI, setContractAddress } = useWallet();
+  const { isConnected, walletName, disconnectWallet, setIsModalOpen } = useWallet();
 
   return (
     <div className="space-y-6 max-w-4xl">
@@ -58,21 +58,23 @@ export default function SettingsPage() {
               <Network className="h-8 w-8 text-muted-foreground" />
               <div>
                 <div className="font-medium">Midnight Testnet</div>
-                <div className="text-sm text-muted-foreground">Default Network</div>
+                <div className="text-sm text-muted-foreground">
+                  {isConnected ? `Connected via ${walletName || 'Web3 Wallet'}` : 'Not Connected'}
+                </div>
               </div>
             </div>
-            <Button variant="outline" disabled>Connected</Button>
+            {isConnected ? (
+              <Button variant="outline" onClick={() => setIsModalOpen(true)}>Manage Wallet</Button>
+            ) : (
+              <Button onClick={() => setIsModalOpen(true)}>Connect Wallet</Button>
+            )}
           </div>
 
-          {connectorAPI && (
-            <div className="pt-4">
+          {isConnected && (
+            <div className="pt-4 flex justify-end">
               <Button 
                 variant="destructive" 
-                onClick={() => {
-                  setConnectorAPI(null);
-                  setWalletAPI(null);
-                  setContractAddress('');
-                }}
+                onClick={disconnectWallet}
               >
                 Disconnect Wallet
               </Button>

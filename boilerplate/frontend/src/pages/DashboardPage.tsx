@@ -5,18 +5,21 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 
 export default function DashboardPage() {
-  const { connectorAPI, contractAddress } = useWallet();
+  const { isConnected, contractAddress, setIsModalOpen } = useWallet();
 
-  if (!connectorAPI) {
+  if (!isConnected) {
     return (
       <div className="flex flex-col items-center justify-center h-[60vh] text-center max-w-md mx-auto">
-        <div className="h-20 w-20 bg-muted rounded-full flex items-center justify-center mb-6">
-          <ShieldCheck className="h-10 w-10 text-muted-foreground" />
+        <div className="h-20 w-20 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center mb-6 text-primary">
+          <ShieldCheck className="h-10 w-10" />
         </div>
         <h2 className="text-2xl font-bold tracking-tight mb-2">Welcome to Midnight Auth</h2>
-        <p className="text-muted-foreground mb-8">
+        <p className="text-muted-foreground mb-6">
           Connect your Midnight Lace wallet to verify your medical eligibility and manage your confidential credentials.
         </p>
+        <Button onClick={() => setIsModalOpen(true)} className="gap-2 shadow-md">
+          Connect Wallet
+        </Button>
       </div>
     );
   }

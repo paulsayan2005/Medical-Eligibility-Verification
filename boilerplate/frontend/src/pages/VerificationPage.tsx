@@ -11,7 +11,7 @@ import { createEligibilityPrivateState, hashPolicyId } from '@midnight-ntwrk/con
 import { configureProviders, deployEligibilityContract, joinEligibilityContract, verifyEligibility } from '../api';
 
 export default function VerificationPage() {
-  const { connectorAPI, walletAPI, contractAddress, setContractAddress, triggerUpdate } = useWallet();
+  const { connectorAPI, walletAPI, contractAddress, setContractAddress, triggerUpdate, isConnected, setIsModalOpen } = useWallet();
   
   const [age, setAge] = useState<string>('25');
   const [policyId, setPolicyId] = useState<string>('POLICY-12345');
@@ -90,13 +90,18 @@ export default function VerificationPage() {
         <p className="text-muted-foreground">Generate a Zero-Knowledge proof of your medical attributes.</p>
       </div>
 
-      {!connectorAPI && (
-        <div className="rounded-lg border border-yellow-500/40 bg-yellow-500/10 p-4 flex items-start gap-3 text-sm">
-          <ShieldCheck className="h-5 w-5 text-yellow-500 shrink-0 mt-0.5" />
-          <div>
-            <p className="font-medium text-yellow-700 dark:text-yellow-400">Wallet not connected</p>
-            <p className="text-muted-foreground mt-0.5">Connect your Midnight Lace Wallet using the button in the top-right corner to deploy a contract and generate ZK proofs.</p>
+      {!isConnected && (
+        <div className="rounded-xl border border-amber-500/40 bg-amber-500/10 p-4 flex items-center justify-between gap-3 text-sm">
+          <div className="flex items-start gap-3">
+            <ShieldCheck className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+            <div>
+              <p className="font-medium text-amber-700 dark:text-amber-400">Wallet not connected</p>
+              <p className="text-muted-foreground mt-0.5">Connect your Midnight Lace Wallet to deploy contracts and generate ZK proofs.</p>
+            </div>
           </div>
+          <Button size="sm" onClick={() => setIsModalOpen(true)} className="shrink-0 gap-1.5 shadow-sm">
+            Connect Wallet
+          </Button>
         </div>
       )}
       <div className="grid gap-6 md:grid-cols-2">
