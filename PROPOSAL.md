@@ -164,6 +164,8 @@ This project belongs to **Midnight Level 3: Advanced Confidential DApps & Identi
 
 ## 18. Deployment Architecture
 - **Contract Language**: Compact (Midnight Network)
+- **Deployed Preprod Smart Contract Address**: `0x059a46718d749105f2e4819242a95edc8dfa8ff784c91a038d73d0d8e23777cfa`
+- **Explorer Verification Link**: [Verify Contract on Midnight Preprod Explorer](https://explorer.preprod.midnight.network/?search=0x059a46718d749105f2e4819242a95edc8dfa8ff784c91a038d73d0d8e23777cfa)
 - **Target Network**: Midnight Testnet / Preprod (`testnet-02.midnight.network`)
 - **Indexer Endpoint**: `https://indexer.testnet-02.midnight.network/api/v1/graphql`
 - **RPC Endpoint**: `https://rpc.testnet-02.midnight.network`

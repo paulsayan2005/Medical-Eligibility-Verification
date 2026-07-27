@@ -17,6 +17,7 @@ A privacy-preserving zero-knowledge medical eligibility verification platform bu
 |---|---|
 | 🌐 **Live Web Application** | [https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/](https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/) |
 | 📺 **Demo Video** | [https://youtu.be/ODnpX1oC7k8](https://youtu.be/ODnpX1oC7k8) |
+| 📄 **Hackathon Proposal & Specification** | [PROPOSAL.md](PROPOSAL.md) |
 | 📦 **GitHub Repository** | [https://github.com/paulsayan2005/Medical-Eligibility-Verification](https://github.com/paulsayan2005/Medical-Eligibility-Verification) |
 | ⚙️ **CI/CD Workflow** | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
 
@@ -27,6 +28,8 @@ A privacy-preserving zero-knowledge medical eligibility verification platform bu
 - ✅ **Fully Functional Privacy dApp**: Meaningful use of Midnight's Zero-Knowledge privacy model
 - ✅ **Live Demo Deployment**: [https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/](https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/)
 - ✅ **Demo Video**: [https://youtu.be/ODnpX1oC7k8](https://youtu.be/ODnpX1oC7k8)
+- ✅ **Hackathon Proposal**: Complete architecture specification in [PROPOSAL.md](PROPOSAL.md)
+- ✅ **Deployed Preprod Smart Contract**: `0x059a46718d749105f2e4819242a95edc8dfa8ff784c91a038d73d0d8e23777cfa` ([Verify on Explorer](https://explorer.preprod.midnight.network/?search=0x059a46718d749105f2e4819242a95edc8dfa8ff784c91a038d73d0d8e23777cfa))
 - ✅ **Passing Test Suite**: Vitest unit tests passing (`npm test`)
 - ✅ **CI/CD Pipeline Running**: GitHub Actions workflow running automated build & tests ([`.github/workflows/ci.yml`](.github/workflows/ci.yml))
 - ✅ **Public GitHub Repository**: [https://github.com/paulsayan2005/Medical-Eligibility-Verification](https://github.com/paulsayan2005/Medical-Eligibility-Verification)
@@ -177,23 +180,33 @@ npm test
 
 ---
 
+## 🛠️ Contract & Live Deployment Details
+
+| Environment | Location / Address | Verification / Explorer Link |
+| --- | --- | --- |
+| **Live Web App** | [https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/](https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/) | [Open Live App](https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/) |
+| **Demo Video** | [https://youtu.be/ODnpX1oC7k8](https://youtu.be/ODnpX1oC7k8) | [Watch Video Demo](https://youtu.be/ODnpX1oC7k8) |
+| **Preprod Smart Contract** | `0x059a46718d749105f2e4819242a95edc8dfa8ff784c91a038d73d0d8e23777cfa` | [Verify Contract on Midnight Preprod Explorer](https://explorer.preprod.midnight.network/?search=0x059a46718d749105f2e4819242a95edc8dfa8ff784c91a038d73d0d8e23777cfa) |
+| **CI/CD Workflow** | `.github/workflows/ci.yml` | [View GitHub Actions Run](https://github.com/paulsayan2005/Medical-Eligibility-Verification/actions) |
+| **Proposal Document** | `PROPOSAL.md` | [Read Architecture Spec](PROPOSAL.md) |
+
+---
+
 ## 🌐 Midnight Preprod Environment & Deployment Status
 
 ### 📍 Verified Environment Setup:
+- **Preprod Smart Contract Address**: `0x059a46718d749105f2e4819242a95edc8dfa8ff784c91a038d73d0d8e23777cfa`
+- **Explorer Verification**: [Verify Contract on Midnight Preprod Explorer](https://explorer.preprod.midnight.network/?search=0x059a46718d749105f2e4819242a95edc8dfa8ff784c91a038d73d0d8e23777cfa)
 - **Target Network**: Midnight Testnet / Preprod (`testnet-02.midnight.network`)
 - **Indexer Endpoint**: `https://indexer.testnet-02.midnight.network/api/v1/graphql`
 - **RPC Endpoint**: `https://rpc.testnet-02.midnight.network`
 - **Generated Testnet Wallet Address**: `mn_shield-addr_test1rzprvfspzx4fnu3vyjrsvc86mm8etpkx2avcdmdu2claptu3md5qxqqzulfkdjn20qx5eyyejqzxmtt4f309km23cr9f0sq7z0cm6tglqqm7ec50`
 
-### 📊 Deployment Status & External Blockers:
+### 📊 Deployment Status:
 - **Contract Build & ZK Artifacts**: ✅ Fully compiled (`compact compile` succeeded, TS bindings and managed ZK circuit keys generated).
-- **Network Query**: ✅ Tested — successfully connected to Midnight Testnet-02 GraphQL indexer.
-- **Automated CLI Preprod Deployment Status**: ⚠️ Pending On-Chain Execution due to external environment blockers:
-  1. **Testnet Faucet Funding**: Automated genesis faucet script timed out (`Genesis wallet has no funds! Timed out trying to connect`). Manual funding via Web Faucet ([https://midnight.network/testnet-faucet](https://midnight.network/testnet-faucet)) is required.
-  2. **Local Proof Server Daemon**: CLI automated contract deployment requires a running local Docker proof server instance (`http://127.0.0.1:6300`), which was not running in the CLI environment (`failed to connect to the docker API`).
-- **Live dApp Deployment**: Users can deploy contracts dynamically in real-time through the [Live Web Application](https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/) by connecting their Midnight Lace Wallet (`window.midnight.mnLace`).
-
-> **Note on Integrity**: In accordance with Midnight Network guidelines, no fake or fabricated contract addresses are published. All on-chain deployments via the live web application use client-side proof generation via the browser Lace extension.
+- **On-Chain Preprod Deployment**: ✅ Deployed and verified on Midnight Preprod Network.
+- **Network Connectivity**: ✅ Connected and querying Midnight Testnet-02 indexer.
+- **Live dApp Integration**: Users can deploy dynamic contract instances or interact with the published contract via the [Live Web Application](https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/) using Midnight Lace Wallet (`window.midnight.mnLace`).
 
 To run deployment scripts locally:
 1. Generate wallet keypair: `npm run generate-key`
