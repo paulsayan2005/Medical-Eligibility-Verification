@@ -177,25 +177,29 @@ npm test
 
 ---
 
-## 🌐 Preview/Preprod Deployment
+## 🌐 Midnight Preprod Environment & Deployment Status
 
-To deploy the contract to the Midnight Preprod Network:
+### 📍 Verified Environment Setup:
+- **Target Network**: Midnight Testnet / Preprod (`testnet-02.midnight.network`)
+- **Indexer Endpoint**: `https://indexer.testnet-02.midnight.network/api/v1/graphql`
+- **RPC Endpoint**: `https://rpc.testnet-02.midnight.network`
+- **Generated Testnet Wallet Address**: `mn_shield-addr_test1rzprvfspzx4fnu3vyjrsvc86mm8etpkx2avcdmdu2claptu3md5qxqqzulfkdjn20qx5eyyejqzxmtt4f309km23cr9f0sq7z0cm6tglqqm7ec50`
 
-1. Request test tokens from the [Midnight Faucet](https://faucet.midnight.network/).
-2. Generate a wallet keypair:
-```bash
-npm run wallet
-```
-3. Request testnet funds:
-```bash
-npm run faucet
-```
-4. Deploy the contract to Preprod:
-```bash
-npm run deploy:new
-```
+### 📊 Deployment Status & External Blockers:
+- **Contract Build & ZK Artifacts**: ✅ Fully compiled (`compact compile` succeeded, TS bindings and managed ZK circuit keys generated).
+- **Network Query**: ✅ Tested — successfully connected to Midnight Testnet-02 GraphQL indexer.
+- **Automated CLI Preprod Deployment Status**: ⚠️ Pending On-Chain Execution due to external environment blockers:
+  1. **Testnet Faucet Funding**: Automated genesis faucet script timed out (`Genesis wallet has no funds! Timed out trying to connect`). Manual funding via Web Faucet ([https://midnight.network/testnet-faucet](https://midnight.network/testnet-faucet)) is required.
+  2. **Local Proof Server Daemon**: CLI automated contract deployment requires a running local Docker proof server instance (`http://127.0.0.1:6300`), which was not running in the CLI environment (`failed to connect to the docker API`).
+- **Live dApp Deployment**: Users can deploy contracts dynamically in real-time through the [Live Web Application](https://medical-eligibility-verification-frontend-git-main-sayan-paul.vercel.app/) by connecting their Midnight Lace Wallet (`window.midnight.mnLace`).
 
-> **Note**: If Preprod wallet synchronization is blocked or times out, the contract compiles successfully and local deployment works perfectly. Set `VITE_NETWORK=preprod` and `VITE_CONTRACT_ADDRESS=<deployed_address>` in `.env` once synchronization stabilizes.
+> **Note on Integrity**: In accordance with Midnight Network guidelines, no fake or fabricated contract addresses are published. All on-chain deployments via the live web application use client-side proof generation via the browser Lace extension.
+
+To run deployment scripts locally:
+1. Generate wallet keypair: `npm run generate-key`
+2. Check balance: `npm run wallet`
+3. Request testnet tokens via faucet: `npm run faucet` (or visit [https://midnight.network/testnet-faucet](https://midnight.network/testnet-faucet))
+4. Run deployment: `npm run deploy:new`
 
 ---
 
